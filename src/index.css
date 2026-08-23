@@ -1,0 +1,149 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --bg-dark: #050508;
+    --bg-panel: rgba(14, 16, 23, 0.65);
+    --bg-panel-darker: rgba(8, 9, 13, 0.85);
+    --accent-blue: #4FC3F7;
+    --accent-blue-deep: #0288D1;
+    --border-glass: rgba(255, 255, 255, 0.12);
+    --border-top-accent: #4FC3F7;
+  }
+
+  body {
+    background-color: #050508;
+    background-image: radial-gradient(circle at 50% 0%, #0E1017 0%, #050508 100%);
+    color: #E0E6ED;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+}
+
+/* Elegant Dark Neomorphic Glassmorphism Utility Classes */
+.glass {
+  background: rgba(14, 16, 23, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.neo-shadow {
+  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.8), -3px -3px 10px rgba(255, 255, 255, 0.02);
+}
+
+.accent-top {
+  border-top: 1px solid #4FC3F7;
+}
+
+.btn-gradient {
+  background: linear-gradient(135deg, rgba(2, 136, 209, 0.85), rgba(79, 195, 247, 0.65));
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 12px rgba(2, 136, 209, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-gradient:hover {
+  background: linear-gradient(135deg, rgba(2, 136, 209, 1), rgba(79, 195, 247, 0.9));
+  box-shadow: 0 6px 20px rgba(79, 195, 247, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.glass-panel {
+  background: rgba(14, 16, 23, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-top: 1px solid #4FC3F7;
+  border-radius: 12px;
+  box-shadow: 6px 6px 16px rgba(0, 0, 0, 0.8), -3px -3px 10px rgba(255, 255, 255, 0.02);
+}
+
+.glass-panel-subtle {
+  background: rgba(14, 16, 23, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 10px;
+  box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.6), -2px -2px 6px rgba(255, 255, 255, 0.015);
+}
+
+.glass-panel-inset {
+  background: rgba(5, 6, 10, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.8), inset -1px -1px 3px rgba(255, 255, 255, 0.02);
+}
+
+.glass-button-primary {
+  background: linear-gradient(135deg, rgba(2, 136, 209, 0.85), rgba(79, 195, 247, 0.7));
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 12px rgba(2, 136, 209, 0.35), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glass-button-primary:hover {
+  background: linear-gradient(135deg, rgba(2, 136, 209, 1), rgba(79, 195, 247, 0.9));
+  box-shadow: 0 6px 20px rgba(79, 195, 247, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.6);
+  transform: translateY(-1px);
+}
+
+.glass-button-secondary {
+  background: rgba(14, 16, 23, 0.75);
+  color: #E0E6ED;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 3px 3px 8px rgba(0, 0, 0, 0.6), -2px -2px 6px rgba(255, 255, 255, 0.02);
+  transition: all 0.2s ease;
+}
+
+.glass-button-secondary:hover {
+  background: rgba(24, 28, 40, 0.85);
+  border-color: #4FC3F7;
+  color: #FFFFFF;
+  box-shadow: 0 0 12px rgba(79, 195, 247, 0.25);
+}
+
+.glass-input {
+  background: rgba(5, 6, 10, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #E0E6ED;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.8);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.glass-input:focus {
+  outline: none;
+  border-color: #4FC3F7;
+  box-shadow: inset 2px 2px 6px rgba(0, 0, 0, 0.8), 0 0 8px rgba(79, 195, 247, 0.3);
+}
+
+/* Custom Scrollbar for Prepress & Code views */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(5, 5, 8, 0.8);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(79, 195, 247, 0.25);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(79, 195, 247, 0.5);
+}
+
+/* Prepress DTF Roll Grid Background */
+.dtf-film-bg {
+  background-color: #0b0d14;
+  background-image: 
+    linear-gradient(rgba(79, 195, 247, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79, 195, 247, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
+}

@@ -1,0 +1,69 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Default-deny all by default
+    match /{document=**} {
+      allow read, write: if false;
+    }
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function isValidId(id) {
+      return id is string && id.size() > 0 && id.size() <= 128 && id.matches('^[a-zA-Z0-9_\\-\\.]+$');
+    }
+
+    function incoming() {
+      return request.resource.data;
+    }
+
+    function existing() {
+      return resource.data;
+    }
+
+    function isValidOrder(data) {
+      return data.broj_racuna is string && data.broj_racuna.size() > 0 && data.broj_racuna.size() <= 64
+        && data.naziv_klijenta is string && data.naziv_klijenta.size() > 0 && data.naziv_klijenta.size() <= 128
+        && data.ukupan_iznos is number && data.ukupan_iznos >= 0
+        && data.datum_racuna is string && data.datum_racuna.size() <= 32
+        && (data.artikli is list && data.artikli.size() <= 100);
+    }
+
+    function isValidAsset(data) {
+      return data.clientName is string && data.clientName.size() > 0 && data.clientName.size() <= 128
+        && data.fileName is string && data.fileName.size() > 0 && data.fileName.size() <= 128;
+    }
+
+    function isValidPlugin(data) {
+      return data.name is string && data.name.size() > 0 && data.name.size() <= 128
+        && data.category is string && data.category.size() <= 64
+        && data.code is string && data.code.size() <= 65536;
+    }
+
+    // Orders collection: read/write for authenticated users or public kiosk operations
+    match /orders/{orderId} {
+      allow read: if true;
+      allow create: if isValidId(orderId) && isValidOrder(incoming());
+      allow update: if isValidId(orderId) && isValidOrder(incoming());
+      allow delete: if isValidId(orderId);
+    }
+
+    // Client assets collection
+    match /client_assets/{assetId} {
+      allow read: if true;
+      allow create: if isValidId(assetId) && isValidAsset(incoming());
+      allow update: if isValidId(assetId) && isValidAsset(incoming());
+      allow delete: if isValidId(assetId);
+    }
+
+    // Plugins collection
+    match /plugins/{pluginId} {
+      allow read: if true;
+      allow create: if isValidId(pluginId) && isValidPlugin(incoming());
+      allow update: if isValidId(pluginId) && isValidPlugin(incoming());
+      allow delete: if isValidId(pluginId);
+    }
+  }
+}

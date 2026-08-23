@@ -1,0 +1,73 @@
+{
+  "entities": {
+    "Order": {
+      "title": "Order",
+      "description": "Radni nalog ili račun za DTF/DTG i promo tisak s popisom artikala i pozicija.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "broj_racuna": { "type": "string", "maxLength": 64 },
+        "naziv_klijenta": { "type": "string", "maxLength": 128 },
+        "oib": { "type": "string", "maxLength": 32 },
+        "kontakt_ime": { "type": "string", "maxLength": 128 },
+        "kontakt_broj": { "type": "string", "maxLength": 64 },
+        "ukupan_iznos": { "type": "number" },
+        "datum_racuna": { "type": "string", "maxLength": 32 },
+        "datum_uplate": { "type": "string", "maxLength": 32 },
+        "zahtijeva_vizual": { "type": "boolean" },
+        "nedostaje_priprema": { "type": "boolean" },
+        "artikli": { "type": "array" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "updatedAt": { "type": "string", "format": "date-time" },
+        "ownerId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["broj_racuna", "naziv_klijenta", "ukupan_iznos", "datum_racuna"]
+    },
+    "ClientAsset": {
+      "title": "ClientAsset",
+      "description": "Grafička priprema, logo ili vektor povezan s klijentom ili brojem računa.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "clientName": { "type": "string", "maxLength": 128 },
+        "invoiceNumber": { "type": "string", "maxLength": 64 },
+        "fileName": { "type": "string", "maxLength": 128 },
+        "fileType": { "type": "string", "maxLength": 64 },
+        "fileSize": { "type": "number" },
+        "dataUrl": { "type": "string", "maxLength": 524288 },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "ownerId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["clientName", "fileName"]
+    },
+    "Plugin": {
+      "title": "Plugin",
+      "description": "Prilagođeni Python ili Illustrator modul s kodom i konfiguracijom.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "maxLength": 128 },
+        "name": { "type": "string", "maxLength": 128 },
+        "category": { "type": "string", "maxLength": 64 },
+        "code": { "type": "string", "maxLength": 65536 },
+        "isActive": { "type": "boolean" },
+        "createdAt": { "type": "string", "format": "date-time" },
+        "ownerId": { "type": "string", "maxLength": 128 }
+      },
+      "required": ["name", "category", "code"]
+    }
+  },
+  "firestore": {
+    "/orders/{orderId}": {
+      "schema": "Order",
+      "description": "Kolekcija svih radnih naloga i računa u DTF Print Hubu."
+    },
+    "/client_assets/{assetId}": {
+      "schema": "ClientAsset",
+      "description": "Kolekcija grafičkih priprema i logotipa klijenata."
+    },
+    "/plugins/{pluginId}": {
+      "schema": "Plugin",
+      "description": "Kolekcija instaliranih skripti i plugina."
+    }
+  }
+}

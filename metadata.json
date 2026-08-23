@@ -1,0 +1,6 @@
+{
+  "name": "DTF Print Hub",
+  "description": "Profesionalni sustav za prepress inženjering, DTF gang sheet generiranje, AI obradu narudžbi, skladišnu pick-listu i analitiku u tamnom neomorfno-staklenom dizajnu.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
